@@ -24,7 +24,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#include <sycl/sycl.hpp>
 ////////////////////////////////////////////////////////////////////////////////
 // Shortcut definition
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,4 +46,4 @@ extern "C" int validateValues(uint *resKey, uint *resVal, uint *srcKey,
 
 extern "C" uint oddEvenMergeSort(uint *d_DstKey, uint *d_DstVal, uint *d_SrcKey,
                                  uint *d_SrcVal, uint batchSize,
-                                 uint arrayLength, uint dir);
+                                 uint arrayLength, uint dir, sycl::queue &q);
