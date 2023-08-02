@@ -97,6 +97,9 @@ static void JacobiMethod(const float *A, const double *b,
       rowThreadSum += (A[i * N_ROWS + j] * x_shared[j]);
     }
 
+  rowThreadSum =
+        sycl::reduce_over_group(tile32, rowThreadSum, sycl::plus<double>());
+
     if (tile32.get_local_linear_id() == 0) {
       sycl::atomic_ref<double, sycl::memory_order::relaxed,
                        sycl::memory_scope::device,
@@ -177,6 +180,7 @@ static void finalError(double *x, double *g_sum,
 
   if (item_ct1.get_local_id(2) < 32) {
     blockSum = sycl::reduce_over_group(tile32, blockSum, sycl::plus<double>());
+    
     if (tile32.get_local_linear_id() == 0) {
       sycl::atomic_ref<double, sycl::memory_order::relaxed,
                        sycl::memory_scope::device,
