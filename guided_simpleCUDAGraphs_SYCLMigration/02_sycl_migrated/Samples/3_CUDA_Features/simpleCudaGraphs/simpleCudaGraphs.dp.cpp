@@ -33,7 +33,6 @@
 
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
-#include <helper_cuda.h>
 #include <vector>
 #include <chrono>
 #include <taskflow/sycl/syclflow.hpp>
@@ -268,7 +267,7 @@ void syclTaskFlowManual(float *inputVec_h, float *inputVec_d,
 
 int main(int argc, char **argv) {
 
-  sycl::queue q_ct1{sycl::default_selector_v};
+  sycl::queue q_ct1{aspect_selector(sycl::aspect::fp64)};
   std::cout << "Device: "
             << q_ct1.get_device().get_info<sycl::info::device::name>() << "\n";
 
