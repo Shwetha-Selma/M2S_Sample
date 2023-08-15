@@ -1,6 +1,6 @@
 # `odd-even mergesort` Sample
 
-The `odd-even mergesort` sample demonstrates how to use the **odd-even mergesort** algorithm (also known as "Batcher's odd–even mergesort"), which belongs to the class of sorting networks. Generally, this algorithm is not efficient for large sequences compared to algorithms with better asymptotic algorithmic complexity (merge sort or radix sort); however, this sort method might be the preferred algorithm for sorting batches of short-sized to mid-sized (key, value) array pairs.
+The `odd-even mergesort` sample demonstrates how to use the **odd-even mergesort** algorithm (also known as "Batcher's odd–even mergesort"), which belongs to the class of sorting networks. Generally, this algorithm is not efficient for large sequences compared to algorithms with better asymptotic algorithmic complexity (merge sort or radix sort); however, this sorting method might be the preferred algorithm for sorting batches of short-sized to mid-sized (key, value) array pairs.
 
 | Area                | Description
 |:---                 |:---
@@ -8,7 +8,7 @@ The `odd-even mergesort` sample demonstrates how to use the **odd-even mergesort
 | Time to complete    | 15 minutes
 | Category            | Concepts and Functionality
 
-> **Note**: This sample is migrated from NVIDIA CUDA sample. See the [sortingNetworks](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/2_Concepts_and_Techniques/sortingNetworks) sample in the NVIDIA/cuda-samples GitHub.
+> **Note**: This sample is migrated from the NVIDIA CUDA sample. See the [sortingNetworks](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/2_Concepts_and_Techniques/sortingNetworks) sample in the NVIDIA/cuda-samples GitHub.
 
 ## Purpose
 
@@ -22,7 +22,7 @@ This sample contains two versions of the program.
 
 | Folder Name             | Description
 |:---                     |:---
-| `01_dpct_output`        | Contains output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some code that is not migrated and has to be manually fixed to get full functionality (The code does not functionally work as supplied).
+| `01_dpct_output`        | Contains the output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some code that is not migrated and has to be manually fixed to get full functionality (The code does not functionally work as supplied).
 | `02_sycl_migrated`      | Contains manually migrated SYCL code from CUDA code.
 
 ## Prerequisites
@@ -44,9 +44,9 @@ This sample demonstrates the migration of the following prominent CUDA features:
 
 ### CUDA Source Code Evaluation
 
-In this implementation, a random sequence of power of 2 elements is given as input, and the algorithm sorts the sequence in parallel. The algorithm sorts the first half of the list and second half of the list separately. The algorithm then sorts the odd-indexed entries and the even-indexed entries separately. You need to make only one more comparison-switch per pair of keys to sort the list completely.
+In this implementation, a random sequence of power of 2 elements is given as input, and the algorithm sorts the sequence in parallel. The algorithm sorts the first half of the list and the second half of the list separately. The algorithm then sorts the odd-indexed entries and the even-indexed entries separately. You need to make only one more comparison switch per pair of keys to sort the list completely.
 
-In this sample, the array length of 1048576 is the input size for the algorithm. The code checks for all the input sizes in the intervals of 2nd power from array lengths from  64 to 1048576 calculated for one iteration. The comparator swaps the value if top value is greater or equal to the bottom value.
+In this sample, the array length of 1048576 is the input size for the algorithm. The code checks for all the input sizes in the intervals of 2nd power from array lengths from  64 to 1048576 calculated for one iteration. The comparator swaps the value if a top value is greater or equal to the bottom value.
 
 ## Set Environment Variables
 
@@ -62,7 +62,7 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    git clone https://github.com/NVIDIA/cuda-samples.git
    ```
-2. Change to the JacobiCudaGraphs sample directory.
+2. Change to the odd-even mergesort sample directory.
    ```
    cd cuda-samples/Samples/2_Concepts_and_Techniques/sortingNetworks
    ```
@@ -72,7 +72,7 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    The above step creates a JSON file named compile_commands.json with all the compiler invocations and stores the names of the input files and the compiler options.
 
-4. Pass the JSON file as input to the SYCLomatic compatibility tool. The result is written to a folder named dpct_output. The --in-root specifies path to the root of the source tree to be migrated. The `--use-custom-helper` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder.
+4. Pass the JSON file as input to the SYCLomatic compatibility tool. The result is written to a folder named dpct_output. The --in-root specifies the path to the root of the source tree to be migrated. The `--use-custom-helper` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder.
    ```
    c2s -p compile_commands.json --in-root ../../.. --use-custom-helper=api
    ```
