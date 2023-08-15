@@ -33,6 +33,7 @@
 
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
+#include <helper_cuda.h>
 #include <vector>
 #include <chrono>
 #include <taskflow/sycl/syclflow.hpp>

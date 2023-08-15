@@ -247,9 +247,9 @@ The following warnings in the "DPCT1XXX" format are gentereated by the tool to i
    ```   
    Run `02_sycl_migrated` for CPU.
     ```
-    export SYCL_DEVICE_FILTER=opencl:cpu
+    export ONEAPI_DEVICE_SELECTOR=opencl:cpu
     make run
-    unset SYCL_DEVICE_FILTER
+    unset ONEAPI_DEVICE_SELECTOR
     ```
 
 #### Troubleshooting
