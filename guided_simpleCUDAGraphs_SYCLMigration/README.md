@@ -1,6 +1,6 @@
 ﻿# `Simple Cuda Graphs` Sample
  
-The `SimpleCudaGraphs` sample demonstrates the migration of CUDA Graph explicit API calls to SYCL using Taskflow programming model which manages a task dependency graph. This sample is implemented using SYCL* by migrating code from original CUDA source code and offloading computations to a CPU, GPU, or accelerator.
+The `SimpleCudaGraphs` sample demonstrates the migration of CUDA Graph explicit API calls to SYCL using the Taskflow programming model which manages a task dependency graph. This sample is implemented using SYCL* by migrating code from the original CUDA source code and offloading computations to a CPU, GPU, or accelerator.
 
 | Area                      | Description
 |:---                       |:---
@@ -12,21 +12,21 @@ The `SimpleCudaGraphs` sample demonstrates the migration of CUDA Graph explicit 
 
 ## Purpose
 
-The sample shows the migration of simple explicit CUDA Graph API's such as cudaGraphCreate, cudaGraphAddMemcpyNode, cudaGraphClone etc, to SYCL equivalent API's using [Taskflow](https://github.com/taskflow/taskflow) programming Model. The parallel implementation demonstrates the use of concepts, such as
+The sample shows the migration of simple explicit CUDA Graph APIs such as cudaGraphCreate, cudaGraphAddMemcpyNode, cudaGraphClone, etc, to SYCL equivalent APIs using [Taskflow](https://github.com/taskflow/taskflow) programming Model. The parallel implementation demonstrates the use of concepts, such as
 
-- CUDA Graph API's
+- CUDA Graph APIs
 - CUDA streams
 - shared memory
 - cooperative groups
-- warp level primitives. 
+- warp-level primitives. 
 
-> **Note**: We use Intel® open-sources SYCLomatic tool which assists developers in porting CUDA code automatically to SYCL code. To finish the process, developers complete the rest of the coding manually and then tune to the desired level of performance for the target architecture. User's can also use SYCLomatic Tool which comes along with the Intel® oneAPI Base Toolkit.
+> **Note**: We use Intel® open-sources SYCLomatic tool which assists developers in porting CUDA code automatically to SYCL code. To finish the process, developers complete the rest of the coding manually and then tune to the desired level of performance for the target architecture. Users can also use SYCLomatic Tool which comes along with the Intel® oneAPI Base Toolkit.
 
 This sample contains two versions in the following folders:
 
 | Folder Name                   | Description
 |:---                           |:---
-| `01_dpct_output`              | Contains output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some unmigrated code that has to be manually fixed to get full functionality. (The code does not functionally work as supplied.)
+| `01_dpct_output`              | Contains the output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some code that is not migrated and has to be manually fixed to get full functionality. (The code does not functionally work as supplied.)
 | `02_sycl_migrated`            | Contains manually migrated SYCL code from CUDA code.
 
 ## Prerequisites
@@ -41,26 +41,26 @@ This sample contains two versions in the following folders:
 
 This sample demonstrates the migration of the following prominent CUDA features: 
 
-- CUDA Graph API's
+- CUDA Graph API
 - CUDA Stream Capture
 - Shared memory
 - CUDA streams 
 - Cooperative groups
-- Warp level primitives
+- Warp-level primitives
 
-SYCL simpleCudaGraphs sample performs reduction operarion to obtain the sum value from 16777216 number of elements in two different computational kernels reduce and reduceFinal. These kernels are scheduled through taskflow which develops a simple and powerful task programming model to enable efficient implementations of heterogeneous decomposition strategies and leverages both static and dynamic task graph constructions to incorporate computational patterns.
+SYCL simpleCudaGraphs sample performs reduction operations to obtain the sum value from 16777216 elements in two different computational kernels `reduce` and `reduceFinal`. These kernels are scheduled through taskflow which develops a simple and powerful task programming model to enable efficient implementations of heterogeneous decomposition strategies and leverages both static and dynamic task graph constructions to incorporate computational patterns.
 
 >  **Note**: Refer to [Workflow for a CUDA* to SYCL* Migration](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/cuda-sycl-migration-workflow.html#gs.s2njvh) for general information about the migration workflow.
 
 ### CUDA source code evaluation
 
-The SimpleCudaGraphs sample demonstrates the usage of CUDA Graphs API’s by performing element reduction. 
+The SimpleCudaGraphs sample demonstrates the usage of CUDA Graphs APIs by performing element reduction. 
 
-The CUDA Graph API are demonstrated in two CUDA functions: 
-1. `cudaGraphsManual()` which uses explicit CUDA Graph API's 
-2. `cudaGraphsUsingStreamCapture()` which uses stream capture API's. 
+The CUDA Graph API is demonstrated in two CUDA functions: 
+1. `cudaGraphsManual()` which uses explicit CUDA Graph APIs 
+2. `cudaGraphsUsingStreamCapture()` which uses stream capture API. 
 
-Reduction is performed in two CUDA kernels `reduce ()` and `reduceFinal()`. We only migrate the cudaGraphsManual() using SYCLomatic Tool and manually migrating the unmigrated code section using [Taskflow](https://github.com/taskflow/taskflow) Programming Model. We do not migrate `cudaGraphsUsingStreamCapture()` because CUDA Stream Capture API's are not yet supported in SYCL.
+Reduction is performed in two CUDA kernels `reduce ()` and `reduceFinal()`. We only migrate the cudaGraphsManual() using SYCLomatic Tool and manually migrate the code section which is not migrated using [Taskflow](https://github.com/taskflow/taskflow) Programming Model. We do not migrate `cudaGraphsUsingStreamCapture()` because CUDA Stream Capture APIs are not yet supported in SYCL.
 
 > **Note**: For more information on how to use Syclomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.vmhplg).
 
@@ -72,7 +72,7 @@ When working with the command-line interface (CLI), you should configure the one
 
 ### Migrate the Code using SYCLomatic
 
-For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA runtime API's to SYCL. Follow these steps to generate the SYCL code using the compatibility tool.
+For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA runtime APIs to SYCL. Follow these steps to generate the SYCL code using the compatibility tool.
 
 1. Clone the required GitHub repository to your local environment.
    ```
@@ -88,20 +88,20 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    The above step creates a JSON file named compile_commands.json with all the compiler invocations and stores the names of the input files and the compiler options.
 
-4. Pass the JSON file as input to the SYCLomatic tool. The result is written to a folder named dpct_output. The `--in-root` specifies path to the root of the source tree to be migrated. The `--use-custom-helper` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder. The `--use-experimental-features` option specifies experimental helper function used to logically group work-items.
+4. Pass the JSON file as input to the SYCLomatic tool. The result is written to a folder named dpct_output. The `--in-root` specifies the path to the root of the source tree to be migrated. The `--use-custom-helper` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder. The `--use-experimental-features` option specifies an experimental helper function used to logically group work-items.
    ```
    c2s -p compile_commands.json --in-root ../../.. --use-custom-helper=api --use-experimental-features=logical-group
    ```
 
 ### Manual workarounds 
 
-The following warnings in the "DPCT1XXX" format are gentereated by the tool to indicate the code not migrated by the tool and need to be manually modified in order to complete the migration. 
+The following warnings in the "DPCT1XXX" format are generated by the tool to indicate the code has not been migrated by the tool and needs to be manually modified in order to complete the migration. 
 
 1.	DPCT1007: Migration of cudaGraphCreate is not supported.
     ```
     cudaGraphCreate(&graph, 0);
     ```
-    SYCL doesn’t support migration of CUDA Graphs API yet. We can manually migrate these API's with the help of [Taskflow](https://github.com/taskflow/taskflow) programming model which supports SYCL. Taskflow introduces a lightweight task graph-based programming model, [tf::syclFlow](https://github.com/taskflow/taskflow/tree/master/taskflow/sycl), for tasking SYCL operations and their dependencies. We need to include the header file, taskflow/sycl/syclflow.hpp, for using tf::syclFlow.
+    SYCL doesn’t support migration of CUDA Graphs API yet. We can manually migrate these APIs with the help of [Taskflow](https://github.com/taskflow/taskflow) programming model which supports SYCL. Taskflow introduces a lightweight task graph-based programming model, [tf::syclFlow](https://github.com/taskflow/taskflow/tree/master/taskflow/sycl), for tasking SYCL operations and their dependencies. We need to include the header file, taskflow/sycl/syclflow.hpp, for using tf::syclFlow.
     ```
     tf::Taskflow tflow;
     tf::Executor exe;
