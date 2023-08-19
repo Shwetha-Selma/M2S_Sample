@@ -1,6 +1,6 @@
-# `odd-even mergesort` Sample
+# `Odd-Even MergeSort` Sample
 
-The `odd-even mergesort` sample demonstrates how to use the **odd-even mergesort** algorithm (also known as "Batcher's odd–even mergesort"), which belongs to the class of sorting networks. Generally, this algorithm is not efficient for large sequences compared to algorithms with better asymptotic algorithmic complexity (merge sort or radix sort); however, this sorting method might be the preferred algorithm for sorting batches of short-sized to mid-sized (key, value) array pairs.
+The `Odd-Even MergeSort` sample demonstrates how to use the **odd-even mergesort** algorithm (also known as "Batcher's odd–even mergesort"), which belongs to the class of sorting networks. Generally, this algorithm is not efficient for large sequences compared to algorithms with better asymptotic algorithmic complexity (merge sort or radix sort); however, this sorting method might be the preferred algorithm for sorting batches of short-sized to mid-sized (key, value) array pairs.
 
 | Area                | Description
 |:---                 |:---
@@ -29,9 +29,9 @@ This sample contains two versions of the program.
 
 | Optimized for            | Description
 |:---                      |:---
-| OS                       | Ubuntu* 20.04
+| OS                       | Ubuntu* 22.04
 | Hardware                 | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max
-| Software                 | SYCLomatic version <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1
+| Software                 | SYCLomatic (Tag - 20230720) <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1
 
 ## Key Implementation Details
 
@@ -48,11 +48,13 @@ In this implementation, a random sequence of power of 2 elements is given as inp
 
 In this sample, the array length of 1048576 is the input size for the algorithm. The code checks for all the input sizes in the intervals of 2nd power from array lengths from  64 to 1048576 calculated for one iteration. The comparator swaps the value if a top value is greater or equal to the bottom value.
 
+For information on how to use SYCLomatic, refer to the materials at *[Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html)*.
+
 ## Set Environment Variables
 
 When working with the command-line interface (CLI), you should configure the oneAPI toolkits using environment variables. Set up your CLI environment by sourcing the `setvars` script every time you open a new terminal window. This practice ensures that your compiler, libraries, and tools are ready for development.
 
-## Migrate the `odd-even mergesort` Code
+## Migrate the `Odd-Even Mergesort` Code
 
 ### Migrate the Code using SYCLomatic
 
@@ -76,6 +78,22 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    c2s -p compile_commands.json --in-root ../../.. --use-custom-helper=api
    ```
+
+## Build and Run the `Odd-Even Mergesort` Sample
+
+>  **Note**: If you have not already done so, set up your CLI
+> environment by sourcing  the `setvars` script in the root of your oneAPI installation.
+>
+> Linux*:
+> - For system wide installations: `. /opt/intel/oneapi/setvars.sh`
+> - For private installations: ` . ~/intel/oneapi/setvars.sh`
+> - For non-POSIX shells, like csh, use the following command: `bash -c 'source <install-dir>/setvars.sh ; exec csh'`
+>
+> Windows*:
+> - `C:\Program Files (x86)\Intel\oneAPI\setvars.bat`
+> - Windows PowerShell*, use the following command: `cmd.exe "/K" '"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" && powershell'`
+>
+> For more information on configuring environment variables, see *[Use the setvars Script with Linux* or macOS*](https://www.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/oneapi-development-environment-setup/use-the-setvars-script-with-linux-or-macos.html)*
 
 ### On Linux*
 
