@@ -101,7 +101,6 @@ void reduceFinal(double *inputVec, double *result,
                             size_t inputSize, const sycl::nd_item<3> &item_ct1,
                             double *tmp) {
 
-  auto cta = item_ct1.get_group();
   size_t globaltid = item_ct1.get_group(2) * item_ct1.get_local_range(2) +
                      item_ct1.get_local_id(2);
 
