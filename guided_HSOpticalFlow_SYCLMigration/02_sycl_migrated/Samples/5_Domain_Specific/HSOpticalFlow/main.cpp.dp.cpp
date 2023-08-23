@@ -35,7 +35,7 @@ const float THRESHOLD = 0.05f;
 
 #include "common.h"
 #include "flowGold.h"
-#include "flowCUDA.h"
+#include "flowSYCL.h"
 
 #include <helper_functions.h>
 #include <cmath>
