@@ -39,7 +39,7 @@ This sample contains three versions in the following folders:
 |:---                        |:---
 | OS                         | Ubuntu* 22.04
 | Hardware                   | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Nvidia Testla P100 <br> Nvidia A100 <br> Nvidia H100
-| Software                   | SYCLomatic (Tag - 20230720) <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1 <br> oneAPI for NVIDIA GPUs plugin (version 2023.2.1) from Codeplay
+| Software                   | SYCLomatic (Tag - 20230720) <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1 <br> oneAPI for NVIDIA GPUs plugin (version 2023.2.0) from Codeplay
 
 For more information on how to install Syclomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v354cy) <br>
 Refer [oneAPI for NVIDIA GPUs plugin](https://developer.codeplay.com/products/oneapi/nvidia/) from Codeplay to execute sample on NVIDIA GPU.
