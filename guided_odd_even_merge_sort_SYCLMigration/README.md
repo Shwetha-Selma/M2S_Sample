@@ -30,8 +30,11 @@ This sample contains two versions of the program.
 | Optimized for            | Description
 |:---                      |:---
 | OS                       | Ubuntu* 22.04
-| Hardware                 | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max
-| Software                 | SYCLomatic (Tag - 20230720) <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1
+| Hardware                 | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max <br> Nvidia Testla P100 <br> Nvidia A100 <br> Nvidia H100 
+| Software                 | SYCLomatic (Tag - 20230720) <br> Intel® oneAPI Base Toolkit (Base Kit) version 2023.2.1 <br> oneAPI for NVIDIA GPUs plugin (version 2023.2.0) from Codeplay
+
+For more information on how to install Syclomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v354cy) <br>
+Refer [oneAPI for NVIDIA GPUs plugin](https://developer.codeplay.com/products/oneapi/nvidia/) from Codeplay to execute sample on NVIDIA GPU.
 
 ## Key Implementation Details
 
@@ -74,9 +77,9 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    The above step creates a JSON file named compile_commands.json with all the compiler invocations and stores the names of the input files and the compiler options.
 
-4. Pass the JSON file as input to the SYCLomatic compatibility tool. The result is written to a folder named dpct_output. The --in-root specifies the path to the root of the source tree to be migrated. The `--use-custom-helper` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder.
+4. Pass the JSON file as input to the SYCLomatic compatibility tool. The result is written to a folder named dpct_output. The --in-root specifies the path to the root of the source tree to be migrated. The `--gen-helper-function` option will make a copy of dpct header files/functions used in migrated code into the dpct_output folder as `include` folder.
    ```
-   c2s -p compile_commands.json --in-root ../../.. --use-custom-helper=api
+   c2s -p compile_commands.json --in-root ../../.. --gen-helper-function
    ```
 
 ## Build and Run the `Odd-Even Mergesort` Sample
@@ -103,9 +106,14 @@ For this sample, the SYCLomatic tool automatically migrates ~80% of the CUDA run
    ```
    $ mkdir build
    $ cd build
-   $ cmake ..
+   $ cmake .. or ( cmake -D INTEL_MAX_GPU=1 .. ) or ( cmake -D NVIDIA_GPU=1 .. )
    $ make
    ```
+   
+   **Note**: By default, no flag are enabled during build which supports Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU. <br>
+    Enable **INTEL_MAX_GPU** flag during build which supports Intel® Data Center GPU Max 1550 or 1100 to get optimized performace. <br>
+    Enable **NVIDIA_GPU** flag during build which supports NVIDIA GPUs.([oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/) plugin   from Codeplay is required to build for NVIDIA GPUs ) <br>
+    
    By default, this command sequence will build the `02_sycl_migrated` versions of the program.
 
 3. Run `02_sycl_migrated` for  GPU.
