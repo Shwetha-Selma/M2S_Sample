@@ -5,7 +5,6 @@ else()
   #To build for Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsycl ")
 endif()
-
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 include_directories(${CMAKE_SOURCE_DIR}/02_sycl_migrated/Common/)
 include_directories(${CMAKE_SOURCE_DIR}/02_sycl_migrated/include/)
