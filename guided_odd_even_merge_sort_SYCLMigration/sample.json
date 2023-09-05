@@ -1,7 +1,7 @@
 {
     "guid": "76B90C7D-DA74-4310-A185-F9F807F2CFDB",
     "name": "Odd Even Merge Sort",
-    "categories": ["Toolkit/oneAPI-samples/DirectProgramming/C++SYCL/GraphTraversal"],
+    "categories": ["Toolkit/oneAPI-samples/DirectProgramming/C++SYCL/Dense Linear Algebra"],
     "description": "This is the preferred algorithm of choice for sorting batches of short-sized to mid-sized (key, value) array pairs.",
     "toolchain": [ "dpcpp" ],
     "languages": [ { "cpp": {} } ],
