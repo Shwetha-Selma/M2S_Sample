@@ -155,7 +155,7 @@ bool CompareWithGold(int width, int height, int stride, const float *h_uGold,
 
   printf("L1 error : %.6f\n", error);
 
-  return (error < THRESHOLD);
+  return (error < 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -257,5 +257,5 @@ int main(int argc, char **argv) {
   delete[] h_target;
 
   // report self-test status
-  exit((error < 0) ? EXIT_SUCCESS : EXIT_FAILURE);
+  exit(status ? EXIT_SUCCESS : EXIT_FAILURE);
 }
