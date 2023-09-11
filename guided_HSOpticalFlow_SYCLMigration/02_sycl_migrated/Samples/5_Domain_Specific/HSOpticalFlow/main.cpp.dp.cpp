@@ -257,5 +257,5 @@ int main(int argc, char **argv) {
   delete[] h_target;
 
   // report self-test status
-  exit(status ? EXIT_SUCCESS : EXIT_FAILURE);
+  exit((error < 0) ? EXIT_SUCCESS : EXIT_FAILURE);
 }

@@ -1,7 +1,4 @@
-if(INTEL_MAX_GPU)
-  #To build for Intel® Data Center GPU Max 1550 or 1100
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsycl -fsycl-targets=intel_gpu_pvc -D INTEL_MAX_GPU")
-elseif (NVIDIA_GPU)
+if(NVIDIA_GPU)
   #To build for Nvidia GPU like P100, A100, H100 ...
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsycl -fsycl-targets=nvptx64-nvidia-cuda -D NVIDIA_GPU")
 else()
@@ -15,9 +12,5 @@ include_directories(${CMAKE_SOURCE_DIR}/03_sycl_migrated_optimized/include/)
 
 add_executable (03_sycl_migrated_optimized Samples/5_Domain_Specific/HSOpticalFlow/main.cpp.dp.cpp Samples/5_Domain_Specific/HSOpticalFlow/flowSYCL.dp.cpp Samples/5_Domain_Specific/HSOpticalFlow/flowGold.cpp.dp.cpp)
 target_link_libraries(03_sycl_migrated_optimized sycl)
-
-#add_custom_target (run_smo cd ${CMAKE_SOURCE_DIR}/03_sycl_migrated_optimized/ && ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/03_sycl_migrated_optimized)
-
-
 
 add_custom_target (run_smo cd ${CMAKE_SOURCE_DIR}/03_sycl_migrated_optimized/ && ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/03_sycl_migrated_optimized )
